@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'raleway-regular';
+  font-display: swap;
+  src: url('Raleway-Regular.woff') format('woff'),
+    url('Raleway-Regular.woff2') format('woff2'), url('Raleway-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'raleway-medium';
+  font-display: swap;
+  src: url('Raleway-Medium.woff') format('woff'),
+    url('Raleway-Medium.woff2') format('woff2'), url('Raleway-Medium.ttf') format('ttf');
+}
