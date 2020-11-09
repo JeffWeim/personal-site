@@ -1,20 +1,25 @@
 import { useRef } from 'react'
 import { useWindowScroll } from 'react-use'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdownWithHtml from 'react-markdown/with-html'
 import styled, { keyframes } from 'styled-components'
 
 import { request } from '../lib/datocms'
 
-import FadeIn from '../components/FadeIn'
-import PaddedView from '../components/PaddedView'
-import Project from '../components/Project'
+const FadeIn = dynamic(() => import('../components/FadeIn'))
+const PaddedView = dynamic(() => import('../components/PaddedView'))
+const Project = dynamic(() => import('../components/Project'))
+
+export const config = {
+  amp: false,
+}
 
 const ABOUTPAGE_QUERY = `
-  query {
+  {
     aboutPage {
       image {
-        url
+        url(imgixParams: {auto: format, q: "80"})
         alt
       }
       skills(markdown: false)
@@ -25,7 +30,7 @@ const ABOUTPAGE_QUERY = `
         name
         images {
           alt
-          url
+          url(imgixParams: {auto: format, q: "80"})
         }
       }
     }
@@ -57,6 +62,7 @@ const About = props => {
       <Head>
         <title>About - Jeff Weimer</title>
       </Head>
+
       <PaddedView>
         <Intro>
           <FadeIn delay={0}>
@@ -64,27 +70,33 @@ const About = props => {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <ReactMarkdown children={text} />
+            <ReactMarkdownWithHtml allowDangerousHtml children={text} />
           </FadeIn>
 
-          <FadeIn delay={400}>
-            <ReactMarkdown children={skills} />
-          </FadeIn>
+          {skills && (
+            <FadeIn delay={400}>
+              <ReactMarkdownWithHtml allowDangerousHtml children={skills} />
+            </FadeIn>
+          )}
 
-          <DownArrow onClick={() => scroll(projectsRef)} isVisible={y < 10}>
-            <DownIcon x='0px' y='0px' viewBox='0 0 492 492'>
-              <path d='M442.668,268.536l-16.116-16.12c-5.06-5.068-11.824-7.872-19.024-7.872c-7.208,0-14.584,2.804-19.644,7.872L283.688,355.992V26.924C283.688,12.084,272.856,0,258.02,0h-22.804c-14.832,0-28.404,12.084-28.404,26.924v330.24L102.824,252.416c-5.068-5.068-11.444-7.872-18.652-7.872c-7.2,0-13.776,2.804-18.84,7.872l-16.028,16.12c-10.488,10.492-10.444,27.56,0.044,38.052l177.576,177.556c5.056,5.056,11.84,7.856,19.1,7.856h0.076c7.204,0,13.972-2.8,19.028-7.856l177.54-177.552C453.164,296.104,453.164,279.028,442.668,268.536z' />
-            </DownIcon>
-          </DownArrow>
+          {projects && (
+            <DownArrow onClick={() => scroll(projectsRef)} isVisible={y < 10}>
+              <DownIcon x='0px' y='0px' viewBox='0 0 492 492'>
+                <path d='M442.668,268.536l-16.116-16.12c-5.06-5.068-11.824-7.872-19.024-7.872c-7.208,0-14.584,2.804-19.644,7.872L283.688,355.992V26.924C283.688,12.084,272.856,0,258.02,0h-22.804c-14.832,0-28.404,12.084-28.404,26.924v330.24L102.824,252.416c-5.068-5.068-11.444-7.872-18.652-7.872c-7.2,0-13.776,2.804-18.84,7.872l-16.028,16.12c-10.488,10.492-10.444,27.56,0.044,38.052l177.576,177.556c5.056,5.056,11.84,7.856,19.1,7.856h0.076c7.204,0,13.972-2.8,19.028-7.856l177.54-177.552C453.164,296.104,453.164,279.028,442.668,268.536z' />
+              </DownIcon>
+            </DownArrow>
+          )}
         </Intro>
 
-        <section ref={projectsRef}>
-          <ProjectsTitle>Projects</ProjectsTitle>
+        {projects && (
+          <section ref={projectsRef}>
+            <ProjectsTitle>Projects</ProjectsTitle>
 
-          {projects.map((project, index) => (
-            <Project key={index.toString()} project={project} />
-          ))}
-        </section>
+            {projects.map((project, index) => (
+              <Project key={index.toString()} project={project} />
+            ))}
+          </section>
+        )}
       </PaddedView>
     </>
   )
@@ -107,16 +119,19 @@ const DownArrow = styled.button`
   animation: ${bounce} 2.25s 2;
   background: none;
   border: none;
-  bottom: 30px;
   cursor: pointer;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   pointer-events: ${({ isVisible }) => (isVisible ? 'auto' : 'none')};
-  position: absolute;
   transition: all 300ms ease-in-out;
+  margin: 20px 0 0;
+
+  @media screen and (min-height: 940px) {
+    position: absolute;
+    bottom: 30px;
+  }
 `
 
 const DownIcon = styled.svg`
-  fill: ${({ theme }) => theme.text.primary};
   width: 40px;
 `
 

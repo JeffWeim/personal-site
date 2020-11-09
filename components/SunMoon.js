@@ -12,15 +12,15 @@ const SunMoon = props => {
 
   useEffect(() => {
     if (!isFirstRun.current) {
-      console.log(`running`)
-
-      if (dm.value) {
-        setMoonActive(true)
-        setSunActive(false)
-      } else {
-        setSunActive(true)
-        setMoonActive(false)
-      }
+      setTimeout(() => {
+        if (dm.value) {
+          setMoonActive(true)
+          setSunActive(false)
+        } else {
+          setSunActive(true)
+          setMoonActive(false)
+        }
+      }, 500)
     } else {
       isFirstRun.current = false
       return undefined
@@ -56,7 +56,7 @@ const moonAnimation = keyframes`
 `
 
 const Sun = styled.div`
-  animation-duration: 1.5s;
+  animation-duration: 2s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   background-color: #f39f18;
@@ -78,7 +78,7 @@ const Sun = styled.div`
 `
 
 const Moon = styled.div`
-  animation-duration: 1.5s;
+  animation-duration: 2s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   background-color: #f4fefe;

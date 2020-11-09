@@ -8,11 +8,14 @@ const Globalstylesheet = createGlobalStyle`
   html,
   body {
     color: ${({ theme }) => theme.text.primary};
+    fill: ${({ theme }) => theme.text.primary};
     font-family: 'raleway-regular', sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   body {
@@ -34,19 +37,35 @@ const Globalstylesheet = createGlobalStyle`
   }
 
   h1 {
-    font-size: ${({ theme }) => theme.fontSizes[7]};
+    font-size: ${({ theme }) => theme.fontSizes[4]};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+      font-size: ${({ theme }) => theme.fontSizes[7]};
+    }
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.fontSizes[6]};
+    font-size: ${({ theme }) => theme.fontSizes[5]};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+      font-size: ${({ theme }) => theme.fontSizes[6]};
+    }
   }
 
   h3 {
-    font-size: ${({ theme }) => theme.fontSizes[5]};
+    font-size: ${({ theme }) => theme.fontSizes[3]};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+      font-size: ${({ theme }) => theme.fontSizes[5]};
+    }
   }
 
   h4 {
     font-size: ${({ theme }) => theme.fontSizes[4]};
+
+    @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+      font-size: ${({ theme }) => theme.fontSizes[4]};
+    }
   }
 
   a {
@@ -76,7 +95,7 @@ const Globalstylesheet = createGlobalStyle`
     }
 
     .slot {
-      display: none !important;
+      display: none;
     }
   }
 

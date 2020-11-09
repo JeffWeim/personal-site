@@ -7,11 +7,11 @@ const CustomHead = () => {
   return (
     <>
       <Head>
-        <style></style>
         <meta
           name='viewport'
-          content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
+          content='width=device-width, initial-scale=1, maximum-scale=1'
         />
+        <meta name='description' content='Jeff Weimer - Software Engineer' />
         <meta charSet='utf-8' />
         <link rel='icon' type='image/png' sizes='32x32' href='/fav/favicon-32x32.png' />
         <link rel='icon' type='image/png' sizes='96x96' href='/fav/favicon-96x96.png' />

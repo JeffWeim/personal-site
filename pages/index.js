@@ -1,10 +1,11 @@
 import { request } from '../lib/datocms'
 import Head from 'next/head'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdownWithHtml from 'react-markdown/with-html'
 import styled from 'styled-components'
+import dynamic from 'next/dynamic'
 
-import PaddedView from '../components/PaddedView'
-import FadeIn from '../components/FadeIn'
+const PaddedView = dynamic(() => import('../components/PaddedView'))
+const FadeIn = dynamic(() => import('../components/FadeIn'))
 
 const HOMEPAGE_QUERY = `
   query {
@@ -13,6 +14,10 @@ const HOMEPAGE_QUERY = `
     }
   }
 `
+
+export const config = {
+  amp: 'hybrid',
+}
 
 const Home = props => {
   const {
@@ -29,8 +34,8 @@ const Home = props => {
 
       <PaddedView>
         <Section>
-          <FadeIn>
-            <ReactMarkdown children={intro} linkTarget='_blank' />
+          <FadeIn delay={300}>
+            <ReactMarkdownWithHtml allowDangerousHtml children={intro} />
           </FadeIn>
         </Section>
       </PaddedView>
@@ -38,7 +43,11 @@ const Home = props => {
   )
 }
 
-const Section = styled.section``
+const Section = styled.section`
+  height: calc(100vh - 173px);
+  display: flex;
+  align-items: center;
+`
 
 export async function getStaticProps(context) {
   const data = await request({

@@ -1,5 +1,6 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
 import FadeIn from './FadeIn'
@@ -13,6 +14,10 @@ const Project = props => {
       <Container>
         <Link external passHref href={project.link}>
           <h2>{project.name}</h2>
+
+          <Description>
+            <ReactMarkdown children={project.description} />
+          </Description>
 
           {project.images.map(image => (
             <Image key={image.url} src={image.url} alt={image.alt} />
@@ -29,6 +34,10 @@ const Container = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
     margin: 0 0 200px;
   }
+`
+
+const Description = styled.div`
+  margin: 0 0 40px;
 `
 
 const Image = styled.img`

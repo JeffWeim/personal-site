@@ -1,10 +1,11 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { AnimatePresence, motion } from 'framer-motion'
 
-import DarkModeToggle from './DarkModeToggle'
-import Link from './Link'
+const DarkModeToggle = dynamic(() => import('./DarkModeToggle'))
+const Link = dynamic(() => import('./Link'))
 
 const Header = props => {
   const { dm, resumeUrl } = props
@@ -12,19 +13,16 @@ const Header = props => {
   const [isNavOpen, setIsNavOpen] = useState(false)
 
   return (
-    <HeaderElement>
-      <Link href='/'>
-        <Button>{dm.value ? '🙂' : '😎'}</Button>{' '}
-      </Link>
+    <>
+      <HeaderElement>
+        <Link href='/'>
+          <Button>{dm.value ? '🙂' : '😎'}</Button>{' '}
+        </Link>
 
-      <Button
-        type='button'
-        onClick={() => setIsNavOpen(!isNavOpen)}
-        style={{ position: 'relative', zIndex: 99 }}
-      >
-        🕹
-      </Button>
-
+        <Button type='button' onClick={() => setIsNavOpen(!isNavOpen)}>
+          🕹
+        </Button>
+      </HeaderElement>
       <AnimatePresence>
         {isNavOpen && (
           <>
@@ -68,7 +66,7 @@ const Header = props => {
           </>
         )}
       </AnimatePresence>
-    </HeaderElement>
+    </>
   )
 }
 
@@ -78,6 +76,8 @@ const Button = styled.button`
   background: none;
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSizes[6]};
+  position: relative;
+  z-index: 99;
 `
 
 const ClickToClose = styled(motion.div)`
@@ -97,6 +97,10 @@ const HeaderElement = styled.header`
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  transition: all 300ms ease-in;
+  z-index: 99;
 `
 
 const Links = styled.span`
@@ -105,8 +109,12 @@ const Links = styled.span`
 `
 
 const LinkText = styled.span`
-  padding: 7.5px 0 7.5px;
+  padding: 15px 0;
   display: block;
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
+    padding: 10px 0;
+  }
 `
 
 const Nav = styled(motion.nav)`

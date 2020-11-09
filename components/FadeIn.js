@@ -5,26 +5,26 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const FadeIn = props => {
-  const { children, delay = 100, reset = false } = props
+  const { children, delay = 0, reset = false } = props
 
   const intersectionRef = React.useRef(null)
   const intersection = useIntersection(intersectionRef, {
     root: null,
-    rootMargin: '50px',
-    threshold: 1,
+    rootMargin: '0px',
+    threshold: 0.25,
   })
 
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    const inViewNow = intersection && intersection.intersectionRatio >= 0.5
+    const inViewNow = intersection?.intersectionRatio > 0.25
 
     if (inViewNow) {
       return setInView(inViewNow)
     } else if (reset) {
       return setInView(false)
     }
-  }, [intersection, reset])
+  }, [intersection?.intersectionRatio, reset])
 
   return (
     <Container ref={intersectionRef} inView={inView} delay={delay}>
