@@ -15,10 +15,6 @@ const HOMEPAGE_QUERY = `
   }
 `
 
-export const config = {
-  amp: 'hybrid',
-}
-
 const Home = props => {
   const {
     data: {
@@ -29,7 +25,7 @@ const Home = props => {
   return (
     <>
       <Head>
-        <title>Home - Jeff Weimer</title>
+        <title>Jeff Weimer | Home</title>
       </Head>
 
       <PaddedView>

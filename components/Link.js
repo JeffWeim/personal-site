@@ -4,11 +4,19 @@ import styled, { css } from 'styled-components'
 import Link from 'next/link'
 
 const LinkElement = props => {
-  const { as, children, external, href, passHref } = props
+  const { as, children, external, href, passHref, textDecoration } = props
 
   return (
-    <Link href={href || ''} as={as || ''} passHref={passHref}>
-      <AnchorElement href={href || ''} target={external ? '_blank' : null}>
+    <Link
+      href={href || ''}
+      // as={as || ''}
+      passHref={passHref}
+    >
+      <AnchorElement
+        // href={href || ''}
+        target={external ? '_blank' : null}
+        $textDecoration={textDecoration}
+      >
         {children}
       </AnchorElement>
     </Link>

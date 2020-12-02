@@ -37,7 +37,7 @@ const Globalstylesheet = createGlobalStyle`
   }
 
   h1 {
-    font-size: ${({ theme }) => theme.fontSizes[4]};
+    font-size: ${({ theme }) => theme.fontSizes[5]};
 
     @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
       font-size: ${({ theme }) => theme.fontSizes[7]};
@@ -45,7 +45,7 @@ const Globalstylesheet = createGlobalStyle`
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.fontSizes[5]};
+    font-size: ${({ theme }) => theme.fontSizes[4]};
 
     @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
       font-size: ${({ theme }) => theme.fontSizes[6]};
@@ -61,7 +61,7 @@ const Globalstylesheet = createGlobalStyle`
   }
 
   h4 {
-    font-size: ${({ theme }) => theme.fontSizes[4]};
+    font-size: ${({ theme }) => theme.fontSizes[3]};
 
     @media screen and (min-width: ${({ theme }) => theme.screen.md}) {
       font-size: ${({ theme }) => theme.fontSizes[4]};

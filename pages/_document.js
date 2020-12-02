@@ -1,5 +1,11 @@
+import Document, {
+  DocumentContext,
+  Html,
+  Head,
+  Main,
+  NextScript,
+} from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
 import React from 'react'
 
 export default class MyDocument extends Document {
@@ -14,7 +20,6 @@ export default class MyDocument extends Document {
         })
 
       const initialProps = await Document.getInitialProps(ctx)
-
       return {
         ...initialProps,
         styles: (
@@ -31,7 +36,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head />
         <body>
           <Main />

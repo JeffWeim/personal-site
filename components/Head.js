@@ -1,25 +1,42 @@
 import React from 'react'
 import Head from 'next/head'
+import { renderMetaTags } from 'react-datocms'
 
 import Globalstylesheet from './Globalstylesheet'
 
-const CustomHead = () => {
+const CustomHead = props => {
+  const { gaCode, site, seoMetaTags } = props
+
+  const gaScript = () => {
+    return `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C2LSGFTXPG');
+    `
+  }
+
   return (
     <>
       <Head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-C2LSGFTXPG`}
+        ></script>
+        <script dangerouslySetInnerHTML={{ __html: gaScript() }} />
         <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1, maximum-scale=1'
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <meta name='description' content='Jeff Weimer - Software Engineer' />
-        <meta charSet='utf-8' />
-        <link rel='icon' type='image/png' sizes='32x32' href='/fav/favicon-32x32.png' />
-        <link rel='icon' type='image/png' sizes='96x96' href='/fav/favicon-96x96.png' />
-        <link rel='icon' type='image/png' sizes='16x16' href='/fav/favicon-16x16.png' />
-        <link rel='icon' type='image/x-icon' href='/fav/favicon.ico' />
-        <meta name='theme-color' content='#6ec5b6' />
-      </Head>
+        <meta charSet="utf-8" />
+        <meta name="theme-color" content="#6ec5b6" />
+        <meta name="medium" content="mult" />
+        <meta name="Author" content="Jeff Weimer" />
+        <meta name="keywords" content="Jeff Weimer" />
 
+        {renderMetaTags(site.favicon)}
+        {renderMetaTags(seoMetaTags)}
+      </Head>
       <Globalstylesheet />
     </>
   )

@@ -135,6 +135,7 @@ const NavInner = styled.div`
   height: 100%;
   padding: 80px 20px 20px;
   justify-content: space-between;
+  max-height: 100vh;
 `
 
 Header.propTypes = {

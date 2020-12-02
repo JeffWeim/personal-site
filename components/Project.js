@@ -19,9 +19,14 @@ const Project = props => {
             <ReactMarkdown children={project.description} />
           </Description>
 
-          {project.images.map(image => (
-            <Image key={image.url} src={image.url} alt={image.alt} />
-          ))}
+          {project.images.map(image =>
+            <Image
+              key={image.url}
+              src={image.url}
+              alt={image.alt}
+              layout="intrinsic"
+            />
+          )}
         </Link>
       </Container>
     </FadeIn>
