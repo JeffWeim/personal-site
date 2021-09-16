@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Sitemap: https://www.jeffweimer.us/sitemap.xml
-Host: https://www.jeffweimer.us
+
+# Host
+Host: https://jeffweimer.dev
+
+# Sitemaps
+Sitemap: https://jeffweimer.dev/sitemap.xml

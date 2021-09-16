@@ -16,6 +16,7 @@ const Project = props => {
           <h2>{project.name}</h2>
 
           <Description>
+            {/* eslint-disable-next-line */}
             <ReactMarkdown children={project.description} />
           </Description>
 

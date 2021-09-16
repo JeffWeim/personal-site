@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+import React, { useState, useEffect, useRef } from 'react'
+
 import styled, { css, keyframes } from 'styled-components'
 
 const SunMoon = props => {
@@ -25,6 +26,8 @@ const SunMoon = props => {
       isFirstRun.current = false
       return undefined
     }
+
+    return undefined
   }, [dm.value])
 
   return (
@@ -47,12 +50,12 @@ const sunAnimation = keyframes`
 `
 
 const moonAnimation = keyframes`
-  0% { top: 30%; left: -8%; box-shadow: 0px 0px 0px 0px rgba(250,250,250,1); opacity: 1;}
-  20% { top: 25%; left: 2%;  box-shadow: 0px 0px 0px 0px rgba(250,250,250,1); opacity: 1;}
-  40% { top: 20%; left: 12%; box-shadow: 0px 0px 50px 5px rgba(250,250,250,1); opacity: 1;}
-  60% { top: 10%; left: 22%; box-shadow: 0px 0px 30px 12px rgba(250,250,250,1); opacity: 1;}
-  80% { top: 0%; left: 32%; box-shadow: 0px 0px 100px 18px rgba(250,250,250,1); opacity: 1;}
-  100% { top: -10%; left: 42%; box-shadow: 0px 0px 20px 0px rgba(250,250,250,1); opacity: .7;}
+  0% { top: -10%; left: 42%; box-shadow: 0px 0px 20px 0px rgba(250,250,250,1); opacity: .7;}
+  20% { top: 0%; left: 32%; box-shadow: 0px 0px 100px 18px rgba(250,250,250,1); opacity: 1;}
+  40% { top: 10%; left: 22%; box-shadow: 0px 0px 30px 12px rgba(250,250,250,1); opacity: 1;}
+  60% { top: 20%; left: 12%; box-shadow: 0px 0px 50px 5px rgba(250,250,250,1); opacity: 1;}
+  80% { top: 25%; left: 2%;  box-shadow: 0px 0px 0px 0px rgba(250,250,250,1); opacity: 1;}
+  100% { top: 30%; left: -8%; box-shadow: 0px 0px 0px 0px rgba(250,250,250,1); opacity: 1;}
 `
 
 const Sun = styled.div`
@@ -99,6 +102,8 @@ const Moon = styled.div`
     `}
 `
 
-SunMoon.propTypes = {}
+SunMoon.propTypes = {
+  dm: PropTypes.objectOf(PropTypes.any).isRequired,
+}
 
 export default SunMoon

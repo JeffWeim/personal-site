@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 const Toggle = props => {
@@ -5,8 +7,8 @@ const Toggle = props => {
 
   return (
     <>
-      <Checkbox id={`react-switch-new`} type='checkbox' checked={checked} onChange={onChange} />
-      <Label htmlFor={`react-switch-new`}>
+      <Checkbox id="react-switch-new" type='checkbox' checked={checked} onChange={onChange} />
+      <Label htmlFor="react-switch-new">
         <Button isActive={checked} />
       </Label>
     </>
@@ -58,5 +60,10 @@ const Checkbox = styled.input`
   visibility: hidden;
   width: 0;
 `
+
+Toggle.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
 
 export default Toggle

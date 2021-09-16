@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import Link from 'next/link'
 
 const LinkElement = props => {
-  const { as, children, external, href, passHref, textDecoration } = props
+  const {  children, external, href, passHref, textDecoration } = props
 
   return (
     <Link
@@ -35,13 +35,13 @@ const AnchorElement = styled.a`
 `
 
 LinkElement.defaultProps = {
-  as: '',
+  external: false,
   passHref: false,
   textDecoration: false,
 }
 
 LinkElement.propTypes = {
-  as: PropTypes.string,
+  external: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
   href: PropTypes.string.isRequired,
   passHref: PropTypes.bool,

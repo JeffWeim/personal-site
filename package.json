@@ -3,38 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@google/model-viewer": "^1.2.1",
-    "framer-motion": "^3.1.1",
-    "fs": "^0.0.1-security",
-    "globby": "^11.0.1",
+    "@google/model-viewer": "^1.8.0",
+    "framer-motion": "^4.1.17",
     "graphql": "^15.3.0",
     "graphql-request": "^3.2.0",
     "intersection-observer": "^0.12.0",
-    "next": "^10.0.0",
+    "next": "^11.1.2",
     "next-ga": "^2.3.4",
     "prop-types": "^15.7.2",
-    "react": "17.0.1",
+    "react": "17.0.2",
     "react-datocms": "^1.4.5",
-    "react-dom": "17.0.1",
-    "react-markdown": "^5.0.2",
-    "react-use": "^15.3.4",
+    "react-dom": "17.0.2",
+    "react-markdown": "^7.0.1",
+    "react-use": "^17.3.1",
     "styled-components": "^5.2.0",
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^11.1.2",
     "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "next-sitemap": "^1.6.168",
     "prettier": "^2.0.2"
   }
 }

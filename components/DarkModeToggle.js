@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 import Toggle from './Toggle'
@@ -33,5 +35,9 @@ const Container = styled.div`
   justify-content: space-between;
   max-width: 95px;
 `
+
+DarkModeToggle.propTypes = {
+  dm: PropTypes.objectOf(PropTypes.any).isRequired,
+}
 
 export default DarkModeToggle

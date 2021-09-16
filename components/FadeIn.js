@@ -1,11 +1,11 @@
-import { motion, AnimatePresence } from 'framer-motion'
+
 import { useIntersection } from 'react-use'
 import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const FadeIn = props => {
-  const { children, delay = 0, reset = false } = props
+  const { children, delay, reset } = props
 
   const intersectionRef = React.useRef(null)
   const intersection = useIntersection(intersectionRef, {
@@ -21,9 +21,11 @@ const FadeIn = props => {
 
     if (inViewNow) {
       return setInView(inViewNow)
-    } else if (reset) {
+    } if (reset) {
       return setInView(false)
     }
+
+    return undefined
   }, [intersection?.intersectionRatio, reset])
 
   return (
@@ -39,9 +41,15 @@ const Container = styled.div`
   transition: ${({ delay }) => `all 400ms ease-out ${delay}ms`};
 `
 
+FadeIn.defaultProps = {
+  reset: false,
+  delay: 0
+}
+
 FadeIn.propTypes = {
   children: PropTypes.node.isRequired,
   delay: PropTypes.number,
+  reset: PropTypes.bool
 }
 
 export default FadeIn

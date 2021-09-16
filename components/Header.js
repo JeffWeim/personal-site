@@ -1,5 +1,5 @@
+import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -11,6 +11,8 @@ const Header = props => {
   const { dm, resumeUrl } = props
 
   const [isNavOpen, setIsNavOpen] = useState(false)
+
+  if (!dm) return null
 
   return (
     <>
@@ -41,14 +43,14 @@ const Header = props => {
             >
               <NavInner>
                 <Links>
-                  <Link href='/about'>
+                  {/* <Link href='/about'>
                     <LinkText
                       onClick={() => setIsNavOpen(false)}
                       onKeyPress={e => (e.keyCode === 13 ? setIsNavOpen(false) : null)}
                     >
                       About
                     </LinkText>
-                  </Link>
+                  </Link> */}
 
                   <Link external passHref href={resumeUrl}>
                     <LinkText

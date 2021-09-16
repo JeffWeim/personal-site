@@ -1,8 +1,11 @@
-import { request } from '../lib/datocms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import Head from 'next/head'
-import ReactMarkdownWithHtml from 'react-markdown/with-html'
+import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 import dynamic from 'next/dynamic'
+
+import { request } from '../lib/datocms'
 
 const PaddedView = dynamic(() => import('../components/PaddedView'))
 const FadeIn = dynamic(() => import('../components/FadeIn'))
@@ -25,13 +28,14 @@ const Home = props => {
   return (
     <>
       <Head>
-        <title>Jeff Weimer | Home</title>
+        <title>Jeff Weimer | Moar Feetures Plz</title>
       </Head>
 
       <PaddedView>
         <Section>
           <FadeIn delay={300}>
-            <ReactMarkdownWithHtml allowDangerousHtml children={intro} />
+            {/* eslint-disable-next-line */}
+            <ReactMarkdown children={intro} />
           </FadeIn>
         </Section>
       </PaddedView>
@@ -55,6 +59,10 @@ export async function getStaticProps(context) {
   return {
     props: { data },
   }
+}
+
+Home.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 export default Home

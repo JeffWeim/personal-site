@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import PropTypes from 'prop-types'
+import React, { useRef } from 'react'
 import { useWindowScroll } from 'react-use'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import ReactMarkdownWithHtml from 'react-markdown/with-html'
+import ReactMarkdown from 'react-markdown'
 import styled, { keyframes } from 'styled-components'
 
 import { request } from '../lib/datocms'
@@ -48,6 +49,7 @@ const About = props => {
 
   const projectsRef = useRef(null)
 
+  // eslint-disable-next-line
   const { _, y } = useWindowScroll()
 
   const scroll = ref => {
@@ -67,12 +69,14 @@ const About = props => {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <ReactMarkdownWithHtml allowDangerousHtml children={text} />
+            {/* eslint-disable-next-line */}
+            <ReactMarkdown children={text} />
           </FadeIn>
 
           {skills && (
             <FadeIn delay={400}>
-              <ReactMarkdownWithHtml allowDangerousHtml children={skills} />
+              {/* eslint-disable-next-line */}
+              <ReactMarkdown children={skills} />
             </FadeIn>
           )}
 
@@ -162,6 +166,10 @@ export async function getStaticProps(context) {
   return {
     props: { data },
   }
+}
+
+About.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 export default About
