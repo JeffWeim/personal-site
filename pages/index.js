@@ -44,7 +44,7 @@ const Home = props => {
 }
 
 const Section = styled.section`
-  height: calc(100vh - 173px);
+  height: calc(100vh - 200px);
   display: flex;
   align-items: center;
 `
