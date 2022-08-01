@@ -127,12 +127,12 @@ const MyApp = props => {
         key={pathname}
         variants={variants}
       >
-        <SunMoon dm={dm || { value: false}} />
+        <SunMoon dm={dm || { value: false }} />
 
         {/* eslint-disable-next-line */}
         <Component {...pageProps} />
 
-        <ModelViewerWrapper isLoaded={isLoaded} >
+        <ModelViewerWrapper isLoaded={isLoaded}>
           <model-viewer
             tabIndex="-1"
             loading="lazy"
@@ -147,14 +147,14 @@ const MyApp = props => {
             auto-rotate=""
             style={{
               position: 'fixed',
-              bottom: 0,
-              right: 0,
+              bottom: '0px',
+              right: '-25%',
               height: '100%',
-              width: '45%',
-              minHeight: windowWidth > 1024 ? '1400px' : null,
+              width: '100%',
               zIndex: '-1',
               outline: 'none',
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              transform: 'translateX(0%)',
             }}
           />
         </ModelViewerWrapper>
@@ -191,7 +191,7 @@ MyApp.propTypes = {
   Component: PropTypes.oneOfType([PropTypes.any]).isRequired,
   pageProps: PropTypes.objectOf(PropTypes.any).isRequired,
   data: PropTypes.objectOf(PropTypes.any).isRequired,
-  router: PropTypes.objectOf(PropTypes.any).isRequired
+  router: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 export default MyApp

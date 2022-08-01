@@ -32,3 +32,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+.vscode
+.env
+
+public/sitemap-0.xml
+public/sitemap.xml
